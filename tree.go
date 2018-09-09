@@ -92,29 +92,28 @@ func (n *Node) split(path, childPath string) error {
 }
 
 func (n *Node) Lookup(path string) (interface{}, []string) {
-	_, data, params := n.lookup(path)
-	return data, params
-}
-
-func (n *Node) lookup(path string) (bool, interface{}, []string) {
 	matched, params := n.match(path)
 	if len(matched) == 0 {
-		return false, nil, nil
+		return nil, nil
 	}
-
-	childPath := path[len(matched):]
-	if len(childPath) == 0 {
-		return true, n.data, params
-	}
-	for _, child := range n.children {
-		if ok, data, childParams := child.lookup(childPath); ok {
-			if len(childParams) > 0 {
-				params = append(params, childParams...)
-			}
-			return true, data, params
+	var childParams []string
+loop:
+	for {
+		if path = path[len(matched):]; len(path) == 0 {
+			return n.data, params
 		}
+		for _, child := range n.children {
+			if matched, childParams = child.match(path); len(matched) > 0 {
+				if len(childParams) > 0 {
+					params = append(params, childParams...)
+				}
+				n = child
+				continue loop
+			}
+		}
+		return nil, nil
 	}
-	return true, nil, nil
+	return nil, nil
 }
 
 func (n *Node) String() string {
