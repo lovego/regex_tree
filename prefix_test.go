@@ -51,6 +51,24 @@ func Example_stringCommonPrefix_differentSuffix() {
 	// Output: /users/, list, root,
 }
 
+func Example_literalCommonPrefix_differentSuffix() {
+	common, a, b, err := literalCommonPrefix(`/users\.html`, `/users\.htm`)
+	fmt.Printf("%s, %s, %s, %v", common, a, b, err)
+	// Output: /users\.htm, l, , <nil>
+}
+
+func Example_literalCommonPrefix_error1() {
+	common, a, b, err := literalCommonPrefix(`(`, `/`)
+	fmt.Printf("%s, %s, %s, %v", common, a, b, err)
+	// Output: , , , error parsing regexp: missing closing ): `(`
+}
+
+func Example_literalCommonPrefix_error2() {
+	common, a, b, err := literalCommonPrefix(`/`, `)`)
+	fmt.Printf("%s, %s, %s, %v", common, a, b, err)
+	// Output: , , , error parsing regexp: unexpected ): `)`
+}
+
 func Example_regexpCommonPrefix_empty1() {
 	common, a, b, err := regexpCommonPrefix(`user_(\d+)/xyz`, `manager_(\d+)/def`)
 	fmt.Printf("%s, %s, %s, %v", common, a, b, err)
@@ -129,13 +147,13 @@ func Example_regexpCommonPrefix_differentSuffix3() {
 	// Output: /([a-z]+)/m, embers/([0-9]+), anagers/([0-9]+), <nil>
 }
 
-func Example_regexpCommonPrefix_panic1() {
+func Example_regexpCommonPrefix_error1() {
 	common, a, b, err := regexpCommonPrefix("(", "/")
 	fmt.Printf("%s, %s, %s, %v", common, a, b, err)
 	// Output: , , , error parsing regexp: missing closing ): `(`
 }
 
-func Example_regexpCommonPrefix_panic2() {
+func Example_regexpCommonPrefix_error2() {
 	common, a, b, err := regexpCommonPrefix("/", ")")
 	fmt.Printf("%s, %s, %s, %v", common, a, b, err)
 	// Output: , , , error parsing regexp: unexpected ): `)`

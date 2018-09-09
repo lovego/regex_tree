@@ -7,6 +7,22 @@ import (
 	"testing"
 )
 
+func Example_newRegex() {
+	r, err := newRegex("/")
+	fmt.Printf("%+v %v\n", r, err)
+	r, err = newRegex(`/index\.html`)
+	fmt.Printf("%+v %v\n", r, err)
+	r, err = newRegex(`/index.html`)
+	fmt.Printf("%+v %v\n", r, err)
+	r, err = newRegex(`(`)
+	fmt.Printf("%+v %v\n", r, err)
+	// Output:
+	// { static: / } <nil>
+	// { static: /index.html } <nil>
+	// { dynamic: ^/index.html } <nil>
+	// {  } error parsing regexp: missing closing ): `(`
+}
+
 func ExampleRegex_commonPrefix_static() {
 	r, _ := newRegex("/")
 	common, a, b, err := r.commonPrefix("/")

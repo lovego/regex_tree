@@ -40,10 +40,21 @@ func (r *regex) match(path string) (string, []string) {
 	return "", nil
 }
 
-func (r *regex) commonPrefix(path string) (string, string, string, error) {
+func (r regex) commonPrefix(path string) (string, string, string, error) {
 	if len(r.static) > 0 {
 		return regexpCommonPrefix(regexp.QuoteMeta(r.static), path)
 	} else {
 		return regexpCommonPrefix(r.dynamic.String()[1:], path)
 	}
+}
+
+func (r regex) String() string {
+	var fields []string
+	if r.static != "" {
+		fields = append(fields, "static: "+r.static)
+	}
+	if r.dynamic != nil {
+		fields = append(fields, "dynamic: "+r.dynamic.String())
+	}
+	return "{ " + strings.Join(fields, ", ") + " }"
 }
