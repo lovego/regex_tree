@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-func ExampleNode() {
+func Example_usage() {
 	root, err := New("/", 1)
 	if err != nil {
 		fmt.Println(err)
@@ -114,35 +114,34 @@ func ExampleNode_Add_conflict5() {
 	// Output: path already exists
 }
 
-func ExampleNode_lookup() {
+func ExampleNode_Lookup() {
 	root, _ := New("/", 0)
 	root.Add("/users", 1)
 	root.Add("/users/([0-9]+)", 2)
 	root.Add("/unix/([a-z]+)/([0-9.]+)", 3)
 	root.Add("/users/root", 4)
 	root.Add("/([0-9]+)", 5)
-	fmt.Println(root.lookup("/"))
-	fmt.Println(root.lookup("/users"))
-	fmt.Println(root.lookup("/users/123"))
-	fmt.Println(root.lookup("/unix/linux/4.4.0"))
+	fmt.Println(root.Lookup("/"))
+	fmt.Println(root.Lookup("/users"))
+	fmt.Println(root.Lookup("/users/123"))
 	fmt.Println(root.Lookup("/unix/linux/4.4.0"))
-	fmt.Println(root.lookup("/users/root"))
-	fmt.Println(root.lookup("/987"))
-	fmt.Println(root.lookup("404"))
-	fmt.Println(root.lookup("/users404"))
-	fmt.Println(root.lookup("/unix/linux/4.4.0a"))
+	fmt.Println(root.Lookup("/users/root"))
+	fmt.Println(root.Lookup("/987"))
+	fmt.Println(root.Lookup("404"))
+	fmt.Println(root.Lookup("/users404"))
+	fmt.Println(root.Lookup("/unix/linux/4.4.0a"))
 
 	// Output:
-	// true 0 []
-	// true 1 []
-	// true 2 [123]
-	// true 3 [linux 4.4.0]
+	// 0 []
+	// 1 []
+	// 2 [123]
 	// 3 [linux 4.4.0]
-	// true 4 []
-	// true 5 [987]
-	// false <nil> []
-	// true <nil> []
-	// true <nil> []
+	// 3 [linux 4.4.0]
+	// 4 []
+	// 5 [987]
+	// <nil> []
+	// <nil> []
+	// <nil> []
 }
 
 func ExampleNode_addToChildren_static1() {

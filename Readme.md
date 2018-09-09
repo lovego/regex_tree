@@ -11,8 +11,8 @@ a regular expression prefix tree.
 package main
 
 import (
-		"fmt"
-		"github.com/lovego/regex_tree"
+	"fmt"
+	"github.com/lovego/regex_tree"
 )
 
 func main() {
@@ -28,6 +28,7 @@ func main() {
 	fmt.Println(root.Lookup("/users"))
 	fmt.Println(root.Lookup("/users/1013"))
 	fmt.Println(root.Lookup("/users/a013"))
+
 	// Output:
 	// 1 []
 	// 2 []
