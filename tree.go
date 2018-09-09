@@ -43,9 +43,8 @@ func (n *Node) Add(path string, data interface{}) error {
 		if n.data == nil {
 			n.data = data
 			return nil
-		} else {
-			return ErrorAlreadyExists
 		}
+		return ErrorAlreadyExists
 	}
 	return n.addToChildren(childPath, data)
 }

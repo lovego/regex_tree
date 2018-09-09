@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-func Example_Node() {
+func ExampleNode() {
 	root, err := New("/", 1)
 	if err != nil {
 		fmt.Println(err)
@@ -114,7 +114,7 @@ func ExampleNode_Add_conflict5() {
 	// Output: path already exists
 }
 
-func ExampleNode_lookup_1() {
+func ExampleNode_lookup() {
 	root, _ := New("/", 0)
 	root.Add("/users", 1)
 	root.Add("/users/([0-9]+)", 2)

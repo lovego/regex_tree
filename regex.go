@@ -43,9 +43,8 @@ func (r *regex) match(path string) (string, []string) {
 func (r regex) commonPrefix(path string) (string, string, string, error) {
 	if len(r.static) > 0 {
 		return regexpCommonPrefix(regexp.QuoteMeta(r.static), path)
-	} else {
-		return regexpCommonPrefix(r.dynamic.String()[1:], path)
 	}
+	return regexpCommonPrefix(r.dynamic.String()[1:], path)
 }
 
 func (r regex) String() string {

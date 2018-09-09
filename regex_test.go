@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func ExampleNewRegex() {
+func Example_newRegex() {
 	r, err := newRegex("/")
 	fmt.Printf("%+v %v\n", r, err)
 	r, err = newRegex(`/index\.html`)
@@ -23,7 +23,7 @@ func ExampleNewRegex() {
 	// {  } error parsing regexp: missing closing ): `(`
 }
 
-func ExampleRegex_commonPrefix_static() {
+func Example_regex_commonPrefix_static() {
 	r, _ := newRegex("/")
 	common, a, b, err := r.commonPrefix("/")
 	fmt.Printf("%s, %s, %s, %v\n", common, a, b, err)
@@ -51,7 +51,7 @@ func ExampleRegex_commonPrefix_static() {
 	// users/, managers, ([0-9]+), <nil>
 }
 
-func ExampleRegex_commonPrefix_dynamic() {
+func Example_regex_commonPrefix_dynamic() {
 	r, _ := newRegex("/([a-z]+)")
 	common, a, b, err := r.commonPrefix("/")
 	fmt.Printf("%s, %s, %s, %v\n", common, a, b, err)
