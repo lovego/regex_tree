@@ -118,10 +118,10 @@ func (n *Node) lookup(path string) (bool, interface{}, []string) {
 }
 
 func (n *Node) String() string {
-	return n.string("")
+	return n.StringIndent("")
 }
 
-func (n *Node) string(indent string) string {
+func (n *Node) StringIndent(indent string) string {
 	var fields []string
 	if n.static != "" {
 		fields = append(fields, "static: "+n.static)
@@ -135,7 +135,7 @@ func (n *Node) string(indent string) string {
 	if len(n.children) > 0 {
 		var children bytes.Buffer
 		for _, child := range n.children {
-			children.WriteString(child.string(indent+"  ") + "\n")
+			children.WriteString(child.StringIndent(indent+"  ") + "\n")
 		}
 		fields = append(fields, fmt.Sprintf("children: [\n%s%s]", children.String(), indent))
 	}
