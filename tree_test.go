@@ -136,7 +136,6 @@ func ExampleNode_Lookup() {
 	// 1 []
 	// 2 [123]
 	// 3 [linux 4.4.0]
-	// 3 [linux 4.4.0]
 	// 4 []
 	// 5 [987]
 	// <nil> []
