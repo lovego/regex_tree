@@ -9,7 +9,7 @@ import (
 
 var (
 	ErrorNoCommonPrefix = errors.New("no common prefix")
-	ErrorAreadyExists   = errors.New("path aready exists")
+	ErrorAlreadyExists  = errors.New("path already exists")
 )
 
 type Node struct {
@@ -44,7 +44,7 @@ func (n *Node) Add(path string, data interface{}) error {
 			n.data = data
 			return nil
 		} else {
-			return ErrorAreadyExists
+			return ErrorAlreadyExists
 		}
 	}
 	return n.addToChildren(childPath, data)

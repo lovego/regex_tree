@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func Example_newRegex() {
+func ExampleNewRegex() {
 	r, err := newRegex("/")
 	fmt.Printf("%+v %v\n", r, err)
 	r, err = newRegex(`/index\.html`)

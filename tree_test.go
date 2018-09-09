@@ -5,7 +5,7 @@ import (
 	"regexp"
 )
 
-func ExampleNode() {
+func Example_Node() {
 	root, err := New("/", 1)
 	if err != nil {
 		fmt.Println(err)
@@ -41,7 +41,7 @@ func ExampleNew() {
 	// <nil> error parsing regexp: missing closing ): `(`
 }
 
-func ExampleNode_Add_1() {
+func ExampleNode_Add_simple1() {
 	root, _ := New("/", 0)
 	fmt.Println(root.Add("(", 3))
 	root.Add("/users", 1)
@@ -56,7 +56,7 @@ func ExampleNode_Add_1() {
 	// ] }
 }
 
-func ExampleNode_Add_2() {
+func ExampleNode_Add_simple2() {
 	root, _ := New("/", 0)
 	root.Add("/users", 1)
 	root.Add("/users/([0-9]+)", 2)
@@ -82,20 +82,20 @@ func ExampleNode_Add_2() {
 func ExampleNode_Add_conflict1() {
 	root, _ := New("/", 0)
 	fmt.Println(root.Add("/", 1))
-	// Output: path aready exists
+	// Output: path already exists
 }
 
 func ExampleNode_Add_conflict2() {
 	root, _ := New("/users", 0)
 	fmt.Println(root.Add("/users", 1))
-	// Output: path aready exists
+	// Output: path already exists
 }
 
 func ExampleNode_Add_conflict3() {
 	root, _ := New("/users", 0)
 	root.Add("/", 1)
 	fmt.Println(root.Add("/users", 2))
-	// Output: path aready exists
+	// Output: path already exists
 }
 
 func ExampleNode_Add_conflict4() {
@@ -103,7 +103,7 @@ func ExampleNode_Add_conflict4() {
 	root.Add("/", 1)
 	root.Add("/users", 2)
 	fmt.Println(root.Add("/users/active", 3))
-	// Output: path aready exists
+	// Output: path already exists
 }
 
 func ExampleNode_Add_conflict5() {
@@ -111,7 +111,7 @@ func ExampleNode_Add_conflict5() {
 	root.Add("/", 1)
 	root.Add("/users", 2)
 	fmt.Println(root.Add("/users/([0-9]+)", 3))
-	// Output: path aready exists
+	// Output: path already exists
 }
 
 func ExampleNode_lookup_1() {
