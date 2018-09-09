@@ -29,17 +29,6 @@ func newRegex(path string) (regex, error) {
 	return regex{dynamic: reg}, nil
 }
 
-func (r *regex) match(path string) (string, []string) {
-	if len(r.static) > 0 {
-		if strings.HasPrefix(path, r.static) {
-			return r.static, nil
-		}
-	} else if params := r.dynamic.FindStringSubmatch(path); len(params) > 0 {
-		return params[0], params[1:]
-	}
-	return "", nil
-}
-
 func (r regex) commonPrefix(path string) (string, string, string, error) {
 	if len(r.static) > 0 {
 		return regexpCommonPrefix(regexp.QuoteMeta(r.static), path)
