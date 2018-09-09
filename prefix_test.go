@@ -142,7 +142,9 @@ func Example_regexpCommonPrefix_differentSuffix2() {
 }
 
 func Example_regexpCommonPrefix_differentSuffix3() {
-	common, a, b, err := regexpCommonPrefix("/([a-z]+)/members/([0-9]+)", "/([a-z]+)/managers/([0-9]+)")
+	common, a, b, err := regexpCommonPrefix(
+		"/([a-z]+)/members/([0-9]+)", "/([a-z]+)/managers/([0-9]+)",
+	)
 	fmt.Printf("%s, %s, %s, %v", common, a, b, err)
 	// Output: /([a-z]+)/m, embers/([0-9]+), anagers/([0-9]+), <nil>
 }
