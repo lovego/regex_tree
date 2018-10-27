@@ -33,7 +33,13 @@ func (n *Node) StringIndent(indent string) string {
 		fields = append(fields, "dynamic: "+n.dynamic.String())
 	}
 	if n.data != nil {
-		fields = append(fields, "data: "+fmt.Sprint(n.data))
+		if v, ok := n.data.(interface {
+			StringIndent(string) string
+		}); ok {
+			fields = append(fields, "data: "+v.StringIndent(indent))
+		} else {
+			fields = append(fields, "data: "+fmt.Sprint(n.data))
+		}
 	}
 	if len(n.children) > 0 {
 		var children bytes.Buffer
