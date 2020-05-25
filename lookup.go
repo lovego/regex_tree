@@ -4,6 +4,7 @@ import (
 	"strings"
 )
 
+// if a child matches, now only this child is looked up, the other children will not be looked up.
 func (n *Node) Lookup(path string) (interface{}, []string) {
 	var matched string
 	var params []string
