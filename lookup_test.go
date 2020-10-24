@@ -35,3 +35,21 @@ func ExampleNode_Lookup() {
 	// <nil> []
 	// <nil> []
 }
+
+func ExampleNode_Lookup_loopback() {
+	root, _ := New("/", 0)
+	root.Add(`/(\w+)`, 1)
+	root.Add(`/(\w+)/abc`, 2)
+	root.Add(`/([a-z]+)/def`, 3)
+
+	fmt.Println(root.Lookup("/"))
+	fmt.Println(root.Lookup("/users"))
+	fmt.Println(root.Lookup("/users/abc"))
+	fmt.Println(root.Lookup("/users/def"))
+
+	// Output:
+	// 0 []
+	// 1 [users]
+	// 2 [users]
+	// 3 [users]
+}

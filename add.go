@@ -5,11 +5,15 @@ import (
 )
 
 var (
+	ErrorDataIsNil      = errors.New("data is nil")
 	ErrorNoCommonPrefix = errors.New("no common prefix")
 	ErrorAlreadyExists  = errors.New("path already exists")
 )
 
 func (n *Node) Add(path string, data interface{}) error {
+	if data == nil {
+		return ErrorDataIsNil
+	}
 	common, splitChildPath, childPath, err := n.commonPrefix(path)
 	if err != nil {
 		return err
@@ -38,7 +42,7 @@ func (n *Node) addToChildren(path string, data interface{}) error {
 			return err
 		}
 	}
-	child, err := New(path, data)
+	child, err := newNode(path, data)
 	if err != nil {
 		return err
 	}
@@ -58,7 +62,7 @@ func (n *Node) addToChildren(path string, data interface{}) error {
 
 // 分裂为父节点和子节点
 func (n *Node) split(path, childPath string) error {
-	child, err := New(childPath, n.data)
+	child, err := newNode(childPath, n.data)
 	if err != nil {
 		return err
 	}

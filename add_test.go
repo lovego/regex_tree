@@ -80,10 +80,10 @@ func ExampleNode_Add_conflict5() {
 
 func ExampleNode_addToChildren_static1() {
 	n, _ := New("/", 0)
-	fmt.Println(n.addToChildren(`(`, nil))
+	fmt.Println(n.addToChildren(`(`, 1))
 	n.addToChildren("users", 1)
 	fmt.Println(n)
-	fmt.Println(n.addToChildren(`(`, nil))
+	fmt.Println(n.addToChildren(`(`, 1))
 	// Output:
 	// error parsing regexp: missing closing ): `(`
 	// { static: /, data: 0, children: [

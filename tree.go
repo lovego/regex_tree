@@ -13,6 +13,13 @@ type Node struct {
 }
 
 func New(path string, data interface{}) (*Node, error) {
+	if data == nil {
+		return nil, ErrorDataIsNil
+	}
+	return newNode(path, data)
+}
+
+func newNode(path string, data interface{}) (*Node, error) {
 	reg, err := newRegex(path)
 	if err != nil {
 		return nil, err
