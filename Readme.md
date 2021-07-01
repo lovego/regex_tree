@@ -1,10 +1,11 @@
 # regex\_tree
 a regular expression prefix tree.
 
-[![Build Status](https://travis-ci.org/lovego/regex_tree.svg?branch=master)](https://travis-ci.org/lovego/regex_tree)
-[![Coverage Status](https://img.shields.io/coveralls/github/lovego/regex_tree/master.svg)](https://coveralls.io/github/lovego/regex_tree?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/lovego/regex_tree?1)](https://goreportcard.com/report/github.com/lovego/regex_tree)
-[![GoDoc](https://godoc.org/github.com/lovego/regex_tree?status.svg)](https://godoc.org/github.com/lovego/regex_tree)
+[![Build Status](https://github.com/lovego/regex_tree/actions/workflows/go.yml/badge.svg)](https://github.com/lovego/regex_tree/actions/workflows/go.yml)
+[![Coverage Status](https://coveralls.io/repos/github/lovego/regex_tree/badge.svg?branch=master)](https://coveralls.io/github/lovego/regex_tree)
+[![Go Report Card](https://goreportcard.com/badge/github.com/lovego/regex_tree)](https://goreportcard.com/report/github.com/lovego/regex_tree)
+[![Documentation](https://pkg.go.dev/badge/github.com/lovego/regex_tree)](https://pkg.go.dev/github.com/lovego/regex_tree@v0.0.1)
+
 
 ## Usage
 ```go
